@@ -52,8 +52,6 @@ env/
 Thumbs.db
 desktop.ini
 
-# Project specific
-currency_rates.db
 *.xlsx
 *.xls
 
