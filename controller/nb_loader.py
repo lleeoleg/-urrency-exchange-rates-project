@@ -3,8 +3,8 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 import pytz
 from typing import List, Dict
-from database import Database
-from config import NB_RSS_URL, NB_TIMEZONE, PRIORITY_CURRENCY_PAIRS
+from database.database import Database
+from config.config import NB_RSS_URL, NB_TIMEZONE, PRIORITY_CURRENCY_PAIRS
 
 
 class NBLoader:

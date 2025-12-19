@@ -1,7 +1,6 @@
-
 import tkinter as tk
 from tkinter import ttk, messagebox
-from config import CURRENCY_RATE_TYPES, ALL_CURRENCIES, LOYALTY_UNITS
+from config.config import CURRENCY_RATE_TYPES, ALL_CURRENCIES, LOYALTY_UNITS
 
 
 class EditRateWindow:

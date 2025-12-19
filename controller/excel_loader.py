@@ -1,7 +1,7 @@
 import pandas as pd
 import datetime
 from typing import List, Dict
-from database import Database
+from database.database import Database
 
 
 class ExcelLoader:

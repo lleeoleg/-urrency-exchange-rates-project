@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime
-from config import CURRENCY_RATE_TYPES, ALL_CURRENCIES
+from config.config import CURRENCY_RATE_TYPES, ALL_CURRENCIES
 
 
 class AddRateWindow:
@@ -9,6 +9,7 @@ class AddRateWindow:
         self.db = db
         self.user = user
         self.rate_blocks = []
+        self.block_frames = []  # Храним ссылки на фреймы блоков для удаления
         
         self.window = tk.Toplevel(parent)
         self.window.title("Добавить курс")
@@ -33,14 +34,19 @@ class AddRateWindow:
                   command=self.calculate_spread).pack(side=tk.LEFT, padx=5)
         ttk.Button(button_frame, text="Добавить блок", 
                   command=lambda: self.add_rate_block(main_frame)).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Сохранить", 
-                  command=self.save_rates).pack(side=tk.LEFT, padx=5)
+        ttk.Button(button_frame, text="Удалить блок", 
+                  command=self.remove_rate_block).pack(side=tk.LEFT, padx=5)
+        btn_save = tk.Button(button_frame, text="Сохранить", 
+                            command=self.save_rates,
+                            bg="#021aee", fg="white",
+                            relief=tk.RAISED, bd=2, padx=10, pady=2)
+        btn_save.pack(side=tk.LEFT, padx=5)
     
     def add_rate_block(self, parent):
         block_frame = ttk.LabelFrame(parent, text=f"Курс {len(self.rate_blocks) + 1}")
         block_frame.pack(fill=tk.X, pady=5)
         
-        block_data = {}
+        block_data = {'frame': block_frame}  # Сохраняем ссылку на фрейм
 
         ttk.Label(block_frame, text="Дата курса (ДД.ММ.ГГГГ):").grid(row=0, column=0, sticky=tk.W, padx=5, pady=2)
         date_entry = ttk.Entry(block_frame, width=15)
@@ -85,6 +91,25 @@ class AddRateWindow:
         block_data['spread'] = spread_label
         
         self.rate_blocks.append(block_data)
+        self.block_frames.append(block_frame)
+    
+    def remove_rate_block(self):
+        """Удаляет последний блок курса"""
+        if len(self.rate_blocks) <= 1:
+            messagebox.showwarning("Предупреждение", 
+                                  "Нельзя удалить последний блок. Должен остаться хотя бы один блок.")
+            return
+        
+        # Удаляем последний блок
+        last_block = self.rate_blocks.pop()
+        last_frame = self.block_frames.pop()
+        
+        # Удаляем фрейм из интерфейса
+        last_frame.destroy()
+        
+        # Обновляем номера блоков
+        for i, block in enumerate(self.rate_blocks):
+            block['frame'].config(text=f"Курс {i + 1}")
     
     def calculate_spread(self):
         for block in self.rate_blocks:

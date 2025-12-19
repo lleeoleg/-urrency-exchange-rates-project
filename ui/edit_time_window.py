@@ -19,11 +19,9 @@ class EditTimeWindow:
     def create_widgets(self):
         ttk.Button(self.window, text="Назад", command=self.window.destroy).pack(pady=5)
         
-        # Фрейм для полей
         main_frame = ttk.Frame(self.window)
         main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
-        # Дата курса
         ttk.Label(main_frame, text="Дата курса (ДД.ММ.ГГГГ):").grid(row=0, column=0, sticky=tk.W, padx=5, pady=5)
         self.date_entry = ttk.Entry(main_frame, width=15)
         self.date_entry.insert(0, datetime.now().strftime("%d.%m.%Y"))

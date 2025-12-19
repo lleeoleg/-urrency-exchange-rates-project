@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from config import LOYALTY_UNITS
+from config.config import LOYALTY_UNITS
 
 
 class ViewWindow:

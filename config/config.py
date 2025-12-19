@@ -1,4 +1,8 @@
-DATABASE_NAME = "currency_rates.db"
+DB_HOST = "localhost"
+DB_PORT = 5432
+DB_NAME = "currency_rates"
+DB_USER = "postgres"
+DB_PASSWORD = "postgres"
 
 NB_RSS_URL = "https://nationalbank.kz/rss/rates_all.xml"
 NB_UPDATE_TIME = "09:00"

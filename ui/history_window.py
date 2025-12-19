@@ -51,7 +51,6 @@ class HistoryWindow:
         history = self.db.get_rate_history(self.rate_id)
         
         for i, record in enumerate(history, 1):
-            # Форматировать время
             try:
                 changed_at = datetime.strptime(record.get('changed_at', ''), 
                                               "%Y-%m-%d %H:%M:%S")

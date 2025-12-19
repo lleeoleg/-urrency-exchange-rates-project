@@ -55,3 +55,8 @@ desktop.ini
 *.xlsx
 *.xls
 
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+

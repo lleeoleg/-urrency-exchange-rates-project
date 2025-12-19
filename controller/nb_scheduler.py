@@ -1,7 +1,7 @@
 import schedule
 import time
-from database import Database
-from nb_loader import NBLoader
+from database.database import Database
+from controller.nb_loader import NBLoader
 import pytz
 from datetime import datetime
 

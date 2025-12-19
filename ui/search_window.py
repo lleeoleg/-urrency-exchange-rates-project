@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 from datetime import datetime
-from config import (CURRENCY_RATE_TYPES, ALL_CURRENCIES, LOYALTY_UNITS,
+from config.config import (CURRENCY_RATE_TYPES, ALL_CURRENCIES, LOYALTY_UNITS,
                    STATUS_SANCTIONED, STATUS_UNSANCTIONED, STATUS_WITH_REMARKS)
-from excel_loader import ExcelLoader
+from controller.excel_loader import ExcelLoader
 
 
 class SearchWindow:
@@ -114,7 +114,6 @@ class SearchWindow:
         if self.date_to_entry.get():
             filters['date_to'] = self.date_to_entry.get()
         
-        # Получить курсы по фильтрам
         rates = self.db.get_rates(filters)
         
         if not rates:
